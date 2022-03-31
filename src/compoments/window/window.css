@@ -43,8 +43,6 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .window-item-content{
@@ -53,7 +51,18 @@
 }
 
 
-.window-item-statistic{
+.window-item-badge{
     margin-top:auto;
-    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+
+.window-item-weibo{
+    margin-right: auto;
+    margin-bottom: -.4rem;
+    cursor:pointer;
+}
+.window-item-time{
+    margin-right: auto;
 }

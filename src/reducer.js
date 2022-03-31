@@ -3,6 +3,8 @@ import { useReducer,useContext,createContext } from "react";
 const actions = {
     ACTIVE_TAB_CHANGE : "ACTIVE_TAB_CHANGE",
     ACTIVE_ACTION_CHANGE : "ACTIVE_ACTION_CHANGE",
+    UPDATE_LATEST_WEIBO_CARDS:"UPDATE_LATEST_WEIBO_CARDS",
+    UPDATE_CUSTOM_WEIBO_CARDS:"UPDATE_CUSTOM_WEIBO_CARDS",
 }
 
 
@@ -84,6 +86,7 @@ let initialState = {
             "utc_crawled": "2022-03-31 13:26:42"
         }
     ],
+    CustomWeiboCards:{},
     keywordList:[
         {
             "created_at": "2022-03-30 12:22:04",
@@ -118,6 +121,17 @@ function reducer(state,{type,payload}) {
                 ...state,
                 activeActionIndex: payload,
             };
+        case actions.UPDATE_LATEST_WEIBO_CARDS:
+            return {
+                ...state,
+                latestWeiboCards: payload,
+            }
+        case actions.UPDATE_CUSTOM_WEIBO_CARDS:
+            const {cards,catalog} = payload;
+            return {
+                ...state,
+                CustomWeiboCards:{...state.CustomWeiboCards,[catalog]:cards}
+            }
         default:
             return initialState;
     }
@@ -127,10 +141,14 @@ export function StateProvider({children}) {
     let [state, dispatch] = useReducer(reducer, initialState);
     const changeActiveTab = (index) => {dispatch({type: actions.ACTIVE_TAB_CHANGE, payload: index})};
     const changeActiveAction = (index) => {dispatch({type: actions.ACTIVE_ACTION_CHANGE, payload: index})};
+    const updateLatestWeiboCards = (cards) => {dispatch({type: actions.UPDATE_LATEST_WEIBO_CARDS, payload: cards})};
+    const updateCustomWeiboCards = (catalog="DEFAULT",cards) => {dispatch({type: actions.UPDATE_CUSTOM_WEIBO_CARDS, payload: {cards,catalog}})};
     return (
         <stateContext.Provider value={{...state,dispatch,
             changeActiveTab,
-            changeActiveAction
+            changeActiveAction,
+            updateLatestWeiboCards,
+            updateCustomWeiboCards
         }}>
             {children}
         </stateContext.Provider>
