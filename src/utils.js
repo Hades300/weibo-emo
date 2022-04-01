@@ -10,16 +10,23 @@ const respValidate = (resp)=>{
     return resp
 }
 
+const params2uri = (params)=>{
+    let uri = '?'
+    for (let key in params){
+        const value = params[key]
+        if (value !==undefined && value !==null && value !==''){
+            uri += `${key}=${params[key]}&`
+        }
+    }
+    return uri.slice(0, -1)
+}
+
 
 export const fetchLatestPosts = (keyword) =>{
-    let params = {}
-    if (keyword){
-        params['keyword'] = keyword
-    }
-    return fetch(`${backendURL}/keyword/post/latest`,{
-        method: 'GET',
-        params: params
-    }).then(resp=>resp.json()).then(respValidate)
+    let params = {keyword}
+    return fetch(`${backendURL}/keyword/post/latest${params2uri(params)}`)
+    .then(resp=>resp.json())
+    .then(respValidate)
 }
 
 

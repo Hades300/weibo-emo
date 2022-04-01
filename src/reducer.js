@@ -48,45 +48,9 @@ let initialState = {
             "repost_count": 640,
             "search_keyword": "张文宏医生",
             "utc_crawled": "2022-03-31 13:26:42"
-        },
-        {
-            "text": "这几天有事，微博刷得少，也因为假话不想说且不太会说，真话又实在伤人。对满屏的疫情信息及各地各种的抱怨和诉苦，我真的无感。回想武汉女作家遭受的我见过的最惨烈最恶毒的网暴，我早对一切疫情信息都无感了。即使疫情影响了透析会危及生命这样的事，我看着都无感了，内心丝毫引不起涟漪。我相信这 ...全文",
-            "uid": 3877093085,
-            "like_count": 6431,
-            "comment_count": 580,
-            "utc_created": "2022-03-30 10:09:50",
-            "id": 4752661187922742,
-            "repost_id": null,
-            "repost_count": 640,
-            "search_keyword": "张文宏医生",
-            "utc_crawled": "2022-03-31 13:26:42"
-        },
-        {
-            "text": "这几天有事，微博刷得少，也因为假话不想说且不太会说，真话又实在伤人。对满屏的疫情信息及各地各种的抱怨和诉苦，我真的无感。回想武汉女作家遭受的我见过的最惨烈最恶毒的网暴，我早对一切疫情信息都无感了。即使疫情影响了透析会危及生命这样的事，我看着都无感了，内心丝毫引不起涟漪。我相信这 ...全文",
-            "uid": 3877093085,
-            "like_count": 6431,
-            "comment_count": 580,
-            "utc_created": "2022-03-30 10:09:50",
-            "id": 4752661187922742,
-            "repost_id": null,
-            "repost_count": 640,
-            "search_keyword": "张文宏医生",
-            "utc_crawled": "2022-03-31 13:26:42"
-        },
-        {
-            "text": "这几天有事，微博刷得少，也因为假话不想说且不太会说，真话又实在伤人。对满屏的疫情信息及各地各种的抱怨和诉苦，我真的无感。回想武汉女作家遭受的我见过的最惨烈最恶毒的网暴，我早对一切疫情信息都无感了。即使疫情影响了透析会危及生命这样的事，我看着都无感了，内心丝毫引不起涟漪。我相信这 ...全文",
-            "uid": 3877093085,
-            "like_count": 6431,
-            "comment_count": 580,
-            "utc_created": "2022-03-30 10:09:50",
-            "id": 4752661187922742,
-            "repost_id": null,
-            "repost_count": 640,
-            "search_keyword": "张文宏医生",
-            "utc_crawled": "2022-03-31 13:26:42"
         }
     ],
-    CustomWeiboCards:{},
+    customWeiboCards:{},
     keywordList:[
         {
             "created_at": "2022-03-30 12:22:04",
@@ -130,7 +94,7 @@ function reducer(state,{type,payload}) {
             const {cards,catalog} = payload;
             return {
                 ...state,
-                CustomWeiboCards:{...state.CustomWeiboCards,[catalog]:cards}
+                customWeiboCards:{...state.customWeiboCards,[catalog]:cards}
             }
         default:
             return initialState;
