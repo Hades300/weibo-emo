@@ -14,8 +14,7 @@ import Keyview from './pages/keyview/keyview';
 const App = () => {
   return (
       <div>
-        <h1>Hello, React Router!</h1>
-        <Routes>
+        <Routes>  
           <Route path="/" element={<Home />} />
           <Route  element={<Layout />}>
             <Route path="keyword" element={<Keyword />} />

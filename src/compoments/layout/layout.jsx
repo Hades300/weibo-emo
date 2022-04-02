@@ -11,7 +11,6 @@ export default function Layout() {
         </div>
         <div className="content">
             <Outlet/>
-            12321
         </div>
     </div>
   )

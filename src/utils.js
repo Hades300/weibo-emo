@@ -22,8 +22,8 @@ const params2uri = (params)=>{
 }
 
 
-export const fetchLatestPosts = (keyword) =>{
-    let params = {keyword}
+export const fetchLatestPosts = (keyword,count) =>{
+    let params = {keyword,count}
     return fetch(`${backendURL}/keyword/post/latest${params2uri(params)}`)
     .then(resp=>resp.json())
     .then(respValidate)

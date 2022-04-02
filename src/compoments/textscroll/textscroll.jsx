@@ -1,9 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useMemo } from 'react'
 import styled from 'styled-components'
 import "./text.css"
 
 
-export default function TextScroll({content,duration=3}) {
+function TextScroll({content,duration=3}) {
   const defaultState = {
     contentWidth: 0,
     left: 0,
@@ -52,3 +52,5 @@ export default function TextScroll({content,duration=3}) {
     </div>
   )
 }
+
+export default TextScroll

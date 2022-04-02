@@ -108,9 +108,10 @@ export default function Keyword() {
       </div>
       <div className='key-container'>
         {
-          Array.prototype.map.call(sortBy(keywordList,sortFunc),({id,name,count},idx)=>{
+          Array.prototype.map.call(sortBy(keywordList,sortFunc),({id,name,count,read_count},idx)=>{
             return (
               <div className='keyword-item' key={id} onClick={()=>navigate(`/keyword/${name}`)}>
+                { count>0 && count!=read_count && <div className='keyword-item-badge'>{count-read_count}</div>}
                 <h2 className='keyword-item-title'>{name}</h2>
                 <p className='keyword-item-data'>已发现<span className='keyword-item-data-num'>{count}</span>条</p>
               </div>

@@ -53,7 +53,7 @@ export default function Keyview() {
             <span className='prev' onClick={handlePrev}> ◀️ </span>
             <span className='next' onClick={handleNext}> ▶️ </span>
             <div className="keyview-wrapper">
-                <Window keyword={keyword} ref={windowRef} />
+                <Window keyword={keyword} ref={windowRef} count={currentKeyword.count} />
             </div>
         </div>
 
