@@ -9,6 +9,7 @@ import {
 import Home from './pages/home/home';
 import Layout from './compoments/layout/layout';
 import Keyword from './pages/keyword/keyword';
+import Keyview from './pages/keyview/keyview';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route  element={<Layout />}>
             <Route path="keyword" element={<Keyword />} />
+            <Route path="keyword/:keyword" element={<Keyview />} />
           </Route>
         </Routes>
       </div>

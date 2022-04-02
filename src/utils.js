@@ -29,6 +29,26 @@ export const fetchLatestPosts = (keyword) =>{
     .then(respValidate)
 }
 
+export const fetchKeywordList = () =>{
+    return fetch(`${backendURL}/keyword/list`)
+    .then(resp=>resp.json())
+    .then(respValidate)
+}
+
+
+// in json format
+export const createKeyword = (keyword) =>{
+    let params = {keyword}
+    return fetch(`${backendURL}/keyword/create`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(params),
+    })
+    .then(resp=>resp.json())
+    .then(respValidate)
+}
 
 
 // given time,out put a string like '1 hour ago'

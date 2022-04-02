@@ -5,6 +5,7 @@ const actions = {
     ACTIVE_ACTION_CHANGE : "ACTIVE_ACTION_CHANGE",
     UPDATE_LATEST_WEIBO_CARDS:"UPDATE_LATEST_WEIBO_CARDS",
     UPDATE_CUSTOM_WEIBO_CARDS:"UPDATE_CUSTOM_WEIBO_CARDS",
+    UPDATE_KEYWORD_LIST:"UPDATE_KEYWORD_LIST",
 }
 
 
@@ -96,6 +97,11 @@ function reducer(state,{type,payload}) {
                 ...state,
                 customWeiboCards:{...state.customWeiboCards,[catalog]:cards}
             }
+        case actions.UPDATE_KEYWORD_LIST:
+            return {
+                ...state,
+                keywordList: payload,
+            }
         default:
             return initialState;
     }
@@ -107,12 +113,14 @@ export function StateProvider({children}) {
     const changeActiveAction = (index) => {dispatch({type: actions.ACTIVE_ACTION_CHANGE, payload: index})};
     const updateLatestWeiboCards = (cards) => {dispatch({type: actions.UPDATE_LATEST_WEIBO_CARDS, payload: cards})};
     const updateCustomWeiboCards = (catalog="DEFAULT",cards) => {dispatch({type: actions.UPDATE_CUSTOM_WEIBO_CARDS, payload: {cards,catalog}})};
+    const updateKeywordList = (keywordList) => {dispatch({type: actions.UPDATE_KEYWORD_LIST, payload: keywordList})};
     return (
         <stateContext.Provider value={{...state,dispatch,
             changeActiveTab,
             changeActiveAction,
             updateLatestWeiboCards,
-            updateCustomWeiboCards
+            updateCustomWeiboCards,
+            updateKeywordList
         }}>
             {children}
         </stateContext.Provider>

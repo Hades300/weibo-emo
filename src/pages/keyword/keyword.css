@@ -120,3 +120,95 @@
 .left{
     margin-right:auto;
 }
+
+
+/* Add Modal */
+
+
+.keyword-modal-content {
+    width:400px;
+    height:200px;
+    box-shadow: 0 6px 9px rgba(0,0,0,0.12);
+    border-radius:.75rem;
+    position:relative;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    transition:all .2s ease-in;
+    border: 0px;
+    background:white;
+    padding: 1rem 2rem;
+    outline: none;
+  }
+
+.keyword-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition:all .2s ease-in;
+    animation: darken .15s forwards;
+  }
+
+  @keyframes darken {
+    0% {
+      background:rgba(0,0,0,.01);
+    }
+    80%{
+        background:rgba(0,0,0,.4);
+    }
+
+    90%{
+        background:rgba(0,0,0,.52);
+    }
+    100% {
+      background:rgba(0,0,0,.5);
+    }
+  }
+
+  .keyword-modal-content > h2{
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    margin:0;
+  }
+  
+  .keyword-modal-content > input {
+    display: block;
+    height: 2rem;
+    border:none;
+    outline:none;
+    font-size:1.5rem;
+    font-weight:300;
+    color: black;
+    transition:all .2s ease-in;
+
+    margin-top: 2rem;
+  }
+
+  .keyword-modal-content > button {
+    height: 2rem;
+    border:none;
+    outline:none;
+    font-size:1.5rem;
+    font-weight:300;
+    color: black;
+    transition:all .1s ease-in;
+
+    right:2rem;
+    bottom:1rem;
+    position: absolute;
+  }
+
+.keyword-modal-content > button:hover{
+transform: scale(1.1);
+}
+
+.keyword-modal-content > button:active{
+    background-color: transparent;
+}
+
+.keyword-modal-content > button:disabled{
+    color: white;
+}
