@@ -6,6 +6,8 @@ const actions = {
     UPDATE_LATEST_WEIBO_CARDS:"UPDATE_LATEST_WEIBO_CARDS",
     UPDATE_CUSTOM_WEIBO_CARDS:"UPDATE_CUSTOM_WEIBO_CARDS",
     UPDATE_KEYWORD_LIST:"UPDATE_KEYWORD_LIST",
+    UPDATE_TASK_LIST:"UPDATE_TASK_LIST",
+    UPDATE_MEDIA_LIST_BY_KEYWORD:"UPDATE_MEDIA_LIST_BY_KEYWORD",
 }
 
 
@@ -71,7 +73,9 @@ let initialState = {
             "sys_user_id": -1,
             "count": 20
         }
-    ]
+    ],
+    taskList:[],
+    mediaListByKeyword:{},
 };
 
 function reducer(state,{type,payload}) {
@@ -102,6 +106,17 @@ function reducer(state,{type,payload}) {
                 ...state,
                 keywordList: payload,
             }
+        case actions.UPDATE_TASK_LIST:
+            return {
+                ...state,
+                taskList: payload,
+            }
+        case actions.UPDATE_MEDIA_LIST_BY_KEYWORD:
+            const {keyword,media} = payload;
+            return {
+                ...state,
+                mediaListByKeyword:{...state.mediaListByKeyword,[keyword]:media}
+            }
         default:
             return initialState;
     }
@@ -114,13 +129,17 @@ export function StateProvider({children}) {
     const updateLatestWeiboCards = (cards) => {dispatch({type: actions.UPDATE_LATEST_WEIBO_CARDS, payload: cards})};
     const updateCustomWeiboCards = (catalog="DEFAULT",cards) => {dispatch({type: actions.UPDATE_CUSTOM_WEIBO_CARDS, payload: {cards,catalog}})};
     const updateKeywordList = (keywordList) => {dispatch({type: actions.UPDATE_KEYWORD_LIST, payload: keywordList})};
+    const updateTaskList = (taskList) => {dispatch({type: actions.UPDATE_TASK_LIST, payload: taskList})};
+    const updateMediaListByKeyword = (keyword,media) => {dispatch({type: actions.UPDATE_MEDIA_LIST_BY_KEYWORD, payload: {keyword,media}})};
     return (
         <stateContext.Provider value={{...state,dispatch,
             changeActiveTab,
             changeActiveAction,
             updateLatestWeiboCards,
             updateCustomWeiboCards,
-            updateKeywordList
+            updateKeywordList,
+            updateTaskList,
+            updateMediaListByKeyword
         }}>
             {children}
         </stateContext.Provider>

@@ -1,13 +1,17 @@
 
-const backendURL = process.env.BACKEND_URL || 'http://localhost:2333';
+const backendURL = process.env.BACKEND_URL || 'http://localhost:8000';
 
 
 const respValidate = (resp)=>{
-    const err = resp?.error
-    if (err){
-        throw new Error(err)
+    if (resp.status !== 200){
+        throw new Error(resp.statusText)
     }
-    return resp
+    let ret = resp.json()
+    const detail = ret?.detail
+    if (detail){
+        throw new Error(detail)
+    }
+    return ret
 }
 
 const params2uri = (params)=>{
@@ -25,14 +29,28 @@ const params2uri = (params)=>{
 export const fetchLatestPosts = (keyword,count) =>{
     let params = {keyword,count}
     return fetch(`${backendURL}/keyword/post/latest${params2uri(params)}`)
-    .then(resp=>resp.json())
     .then(respValidate)
 }
 
 export const fetchKeywordList = () =>{
     return fetch(`${backendURL}/keyword/list`)
-    .then(resp=>resp.json())
     .then(respValidate)
+}
+
+export const fetchTaskList = (page,name,type) =>{
+    let params = {page,name,type}
+    return fetch(`${backendURL}/task/list${params2uri(params)}`)
+    .then(respValidate)
+}
+
+export const fetchMediaList = (keyword) => {
+    let params = {keyword}
+    return fetch(`${backendURL}/keyword/media/list${params2uri(params)}`)
+    .then(respValidate)
+}
+
+export const getMobileURL = (payload) => {
+    return `${backendURL}/parse/mobile${params2uri({payload})}`
 }
 
 
@@ -46,7 +64,6 @@ export const createKeyword = (keyword) =>{
         },
         body: JSON.stringify(params),
     })
-    .then(resp=>resp.json())
     .then(respValidate)
 }
 
