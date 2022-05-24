@@ -12,8 +12,11 @@ import Keyword from './pages/keyword/keyword';
 import Keyview from './pages/keyview/keyview';
 import Task from './pages/task/task';
 
+import SnackbarProvider from 'react-simple-snackbar'
+
 const App = () => {
   return (
+    <SnackbarProvider>
       <div>
         <Routes>  
           <Route path="/" element={<Home />} />
@@ -24,6 +27,7 @@ const App = () => {
           </Route>
         </Routes>
       </div>
+    </SnackbarProvider>
   );
 }
 export default App;

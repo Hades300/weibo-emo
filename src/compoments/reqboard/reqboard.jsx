@@ -1,11 +1,11 @@
 import React, { useEffect,useState } from 'react';
-import { VictoryLine, VictoryChart, VictoryTheme ,VictoryLabel} from 'victory';
+import { VictoryLine, VictoryChart, VictoryTheme ,VictoryLabel,VictoryBar} from 'victory';
 import "./reqboard.css"
 
 export default function Reqboard() {
     
  
-    const [data,setData] = useState()
+    const [data,setData] = useState({})
 
     const array2points = (array) => {
         let points = []
@@ -23,24 +23,10 @@ export default function Reqboard() {
             success = array2points(success)
             error = array2points(error)
             qps = array2points(qps)
-            console.log(success,error,qps,since)
             setData({success,error,qps,since})
         }
     },[]);
     
-    // mock data change
-    // useEffect(() => {
-    //     let timer = setInterval(() => {
-    //         setData((data) => {
-    //             let last_data = data[data.length-1]
-    //             let new_date = new Date(last_data.x.getTime() + 1000*30)
-    //             let qps = Math.floor(Math.random() * 20)+20
-    //             return [...data.slice(1),{x:new_date,y:qps}]
-    //         })
-    //     },1000)
-    //     return ()=>{clearInterval(timer)}
-    // },[])
-
     return (
         <div className='reqboard-container'>
             <div className="reqboard-card">
@@ -57,7 +43,7 @@ export default function Reqboard() {
                             width="100%"
                             height="100%"
                             interpolation="natural"
-                            labels={({ datum }) => datum.y}
+                            // labels={({ datum }) => datum.y}
                             labelComponent={<VictoryLabel renderInPortal dy={-20}/>}
                         />
                     </VictoryChart>
@@ -68,7 +54,7 @@ export default function Reqboard() {
                 <span className='reqboard-card-title'>失败数(by min)</span>
                 <div className="qps" >
                     <VictoryChart theme={VictoryTheme.material}>
-                        <VictoryLine
+                        <VictoryBar
                             style={{
                                 data: { stroke: '#c43a31' },
                                 parent: { border: '1px solid #ccc' },
@@ -77,8 +63,7 @@ export default function Reqboard() {
                             domain={{y:[0,100]}}
                             width="100%"
                             height="100%"
-                            interpolation="natural"
-                            labels={({ datum }) => datum.y}
+                            // labels={({ datum }) => datum.y}
                             labelComponent={<VictoryLabel renderInPortal dy={-20}/>}
                         />
                     </VictoryChart>
@@ -89,7 +74,7 @@ export default function Reqboard() {
                 <span className='reqboard-card-title'>成功数(by min)</span>
                 <div className="qps" >
                     <VictoryChart theme={VictoryTheme.material}>
-                        <VictoryLine
+                        <VictoryBar
                             style={{
                                 data: { stroke: '#c43a31' },
                                 parent: { border: '1px solid #ccc' },
@@ -98,8 +83,7 @@ export default function Reqboard() {
                             domain={{y:[0,500]}}
                             width="100%"
                             height="100%"
-                            interpolation="natural"
-                            labels={({ datum }) => datum.y}
+                            // labels={({ datum }) => datum.y}
                             labelComponent={<VictoryLabel renderInPortal dy={-20}/>}
                         />
                     </VictoryChart>

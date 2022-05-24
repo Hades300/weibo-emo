@@ -5,13 +5,21 @@ import Window from '../../compoments/window/window'
 import { useStateContext } from '../../reducer'
 import {fetchMediaList} from '../../utils'
 import ImageViewer from "react-simple-image-viewer";
+import useWindowDimensions from '../../hooks/useWindowDimensions'
+import Sentiment from '../../compoments/sentiment/sentiment'
+import Kollist from '../../compoments/kollist/kollist'
 
 export default function Keyview() {
     const {keyword} = useParams()
-    const {keywordList,updateMediaListByKeyword,mediaListByKeyword} = useStateContext()
+    const {width,height} = useWindowDimensions()
+    let emotionNum = parseInt(width) > 1568 ? 8 : 6
+    emotionNum = parseInt(width) > 1900 ? 10 : emotionNum
+
+    const {keywordList,updateMediaListByKeyword,mediaListByKeyword,emotionTagByName} = useStateContext()
     const updateMedia = useCallback((media)=> updateMediaListByKeyword(keyword,media),[keyword])
 
     const currentKeyword = keywordList.find(item=>item?.name==keyword)
+    console.log(currentKeyword)
     const currentMedia = mediaListByKeyword[keyword] || {}
     const currentImageMedia = (currentMedia.images || []).slice(0,15)
     const currentVideoMedia = currentMedia.videos || []
@@ -65,16 +73,36 @@ export default function Keyview() {
 
         <div className="keyview-cube-list">
             <div className="keyview-cube">
-
+                <div className="emotion-analyse">
+                    <h3>常用表情统计</h3>
+                    <ul>
+                        {
+                            Array.prototype.map.call(currentKeyword?.emotion_top_10.slice(0,emotionNum) || {},(item,index)=>{
+                                return (
+                                    <li key={index}>
+                                        <span dangerouslySetInnerHTML={{__html:emotionTagByName(item.name) || '未收录'}}></span>
+                                        <span>{(parseFloat(item?.percent)*100).toFixed(2)+"%" || "???"}</span>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
             </div>
             <div className="keyview-cube">
-                
+                <div className="word-cloud">
+                    { currentKeyword?.word_cloud_url && <img src={currentKeyword?.word_cloud_url} alt="" />}
+                </div>
             </div>
             <div className="keyview-cube">
-                
+                <div className="sentiment-wrapper">
+                    <Sentiment sentiments={currentKeyword?.sentiment_distribution || []}/>
+                </div>
             </div>
             <div className="keyview-cube">
-                
+                <div className="kol-wrapper">
+                    <Kollist kollist={currentKeyword?.kol_top_10 || []}/>
+                </div>
             </div>
         </div>
 

@@ -1,4 +1,5 @@
 import { useReducer,useContext,createContext } from "react";
+import emotionDict from "./face";
 
 const actions = {
     ACTIVE_TAB_CHANGE : "ACTIVE_TAB_CHANGE",
@@ -131,6 +132,9 @@ export function StateProvider({children}) {
     const updateKeywordList = (keywordList) => {dispatch({type: actions.UPDATE_KEYWORD_LIST, payload: keywordList})};
     const updateTaskList = (taskList) => {dispatch({type: actions.UPDATE_TASK_LIST, payload: taskList})};
     const updateMediaListByKeyword = (keyword,media) => {dispatch({type: actions.UPDATE_MEDIA_LIST_BY_KEYWORD, payload: {keyword,media}})};
+
+    const emotionTagByName = (name) => {if (name in emotionDict) return emotionDict[name]; if (`[${name}]` in emotionDict) return emotionDict[`[${name}]`]; return "";};
+
     return (
         <stateContext.Provider value={{...state,dispatch,
             changeActiveTab,
@@ -139,7 +143,8 @@ export function StateProvider({children}) {
             updateCustomWeiboCards,
             updateKeywordList,
             updateTaskList,
-            updateMediaListByKeyword
+            updateMediaListByKeyword,
+            emotionTagByName
         }}>
             {children}
         </stateContext.Provider>

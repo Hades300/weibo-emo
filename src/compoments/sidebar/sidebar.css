@@ -52,3 +52,37 @@
 .active{
     background-color: #f5f5f5;
 }
+
+
+/* sidebar user part */
+
+.sidebar-user{
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto;
+    padding: .25rem .5rem;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    box-shadow: 0 6px 9px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.12);
+    border-radius: .75rem;
+
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.sidebar-user-name{
+    margin:0;
+    padding: 0;
+
+    font-size: 1.25rem;
+    color:red;
+}
+
+span.sidebar-user-mail{
+    color:rgb(17, 160, 216);
+}

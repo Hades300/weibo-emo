@@ -18,6 +18,10 @@ export default function Sidebar() {
     const navigate = useNavigate()
   return (
     <div className='sidebar-container'>
+        <div className="sidebar-user">
+            <h2 className="sidebar-user-name">Admin</h2>
+            <span className="sidebar-user-mail">admin@bill.red</span>
+        </div>
         <ul className='sidebar-ul'>
             {
                 Array.prototype.map.call(tabs,

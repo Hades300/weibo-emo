@@ -44,12 +44,74 @@ span.big{
 }
 
 .keyview-cube{
+    --width:calc(100px + 8vmax);
     flex:0 0 auto;
-    background-color: darkcyan;
+    /* background-color: darkcyan; */
     height: 100%;
-    width: calc(100px + 8vmax);
+    width: var(--width);
 
     box-shadow: 0 6px 9px rgba(0,0,0,0.14);
+    padding:.5rem 1rem;
+    
+    backdrop-filter: blur(2px);
+}
+
+
+/* emotion-analyse */
+.emotion-analyse{
+    overflow: hidden;
+}
+
+.emotion-analyse h3{
+    font-weight: 300;
+}
+
+
+.emotion-analyse > ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    list-style: none;
+    padding: 1rem 0 0;
+}
+
+.emotion-analyse > ul > li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-basis: calc(calc(var(--width) / 2) - 1.5rem);
+}
+
+
+/* word cloud */
+
+.keyview-cube > .word-cloud > img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* sentiment-distribution */
+
+.keyview-cube > .sentiment-wrapper{
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* kol list */
+.keyview-cube > .kol-wrapper{
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .keyview-post-list{

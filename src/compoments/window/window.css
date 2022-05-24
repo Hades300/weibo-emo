@@ -50,9 +50,17 @@
 
 }
 
+.window-item-bottom{
+    margin-top:auto;
+}
+
+.window-item-emotion{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 .window-item-badge{
-    margin-top:auto;
     display: flex;
     align-items: center;
 }

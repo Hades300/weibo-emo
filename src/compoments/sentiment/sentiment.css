@@ -1,0 +1,12 @@
+.sentiment-container{
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.sentiment-container > div{
+    flex-basis: 40%;
+}
